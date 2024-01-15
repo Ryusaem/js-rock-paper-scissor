@@ -1,16 +1,77 @@
-let round = document.querySelector("#round");
-let playerScore = document.querySelector("#playerScore");
-let computerScore = document.querySelector("#computerScore");
+let round = 0;
+let playerChoice = "";
+let computerChoice = "";
+let playerScore = 0;
+let computerScore = 0;
+
+let rounds = document.querySelector("#rounds");
 let choice = ["fire", "plant", "water"];
 let sentence = document.querySelector("#sentence");
 let state = document.querySelector("#state");
 
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === computerSelection) {
-    round.textContent++;
+let enemy = document.querySelector("#enemy");
+const pokemonButtons = document.querySelectorAll(".pokemon");
+const computer_choice = document.querySelector("#computer_choice");
+
+function countRounds() {
+  round += 1;
+  rounds.innerText = `Round: ${round}`;
+  return round;
+}
+
+function getComputerChoice() {
+  let temp = choice[Math.floor(Math.random() * choice.length)];
+  computer_choice.textContent = temp;
+  return temp;
+}
+
+function updateScoreAndState(winner, playerSelection, computerSelection) {
+  if (winner === "player") {
+    playerScore++;
+
+    document.querySelector(
+      "#playerScore"
+    ).textContent = `Player: ${playerScore}`;
+
+    state.textContent = "You WIN";
+  } else if (winner === "computer") {
+    computerScore++;
+
+    document.querySelector(
+      "#computerScore"
+    ).textContent = `Computer: ${computerScore}`;
+
+    state.textContent = "You LOSE";
+  } else {
     state.textContent = "Tie";
-    sentence.textContent = `${playerSelection} ties with ${computerSelection}`;
-    return "Tie";
+  }
+  sentence.textContent = createSentence(
+    winner,
+    playerSelection,
+    computerSelection
+  );
+}
+
+function createSentence(winner, playerSelection, computerSelection) {
+  if (winner === "player") {
+    return `${playerSelection} beats ${computerSelection}`;
+  } else if (winner === "computer") {
+    return `${playerSelection} get beaten by ${computerSelection}`;
+  } else {
+    return `${playerSelection} ties with ${computerSelection}`;
+  }
+}
+
+function isGameOver() {
+  return playerScore === 5 || computerScore === 5;
+}
+
+function playRound(playerSelection, computerSelection) {
+  countRounds();
+
+  if (playerSelection === computerSelection) {
+    updateScoreAndState("tie", playerSelection, computerSelection);
+    return "TIE";
   }
 
   if (
@@ -18,51 +79,50 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "plant" && computerSelection === "water") ||
     (playerSelection === "water" && computerSelection === "fire")
   ) {
-    playerScore.textContent++;
-    round.textContent++;
-    state.textContent = "You WIN";
-    sentence.textContent = `${playerSelection} beats ${computerSelection}`;
+    updateScoreAndState("player", playerSelection, computerSelection);
     return "You WIN";
   } else {
-    computerScore.textContent++;
-    round.textContent++;
-    state.textContent = "You LOSE";
-    sentence.textContent = `${playerSelection} get beaten by ${playerSelection}`;
+    updateScoreAndState("computer", playerSelection, computerSelection);
     return "You LOSE";
   }
 }
 
-function getComputerChoice() {
-  return choice[Math.floor(Math.random() * choice.length)];
+function restartGame() {
+  playerChoice = "";
+  computerChoice = "";
+
+  round = 0;
+  playerScore = 0;
+  computerScore = 0;
+
+  rounds.innerText = `Round: ${round}`;
+  document.querySelector("#playerScore").textContent = `Player: ${playerScore}`;
+  document.querySelector(
+    "#computerScore"
+  ).textContent = `Computer: ${computerScore}`;
+  computer_choice.textContent = "";
+  state.textContent = "";
+  sentence.textContent = "";
+
+  alert("The game is going to restart.");
 }
 
-let playerChoice = "";
-let computerChoice = getComputerChoice();
+pokemonButtons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    if (isGameOver()) {
+      restartGame();
+    }
 
-let fire = document.querySelector("#fire");
-let plant = document.querySelector("#plant");
-let water = document.querySelector("#water");
-let enemy = document.querySelector("#enemy");
+    playerChoice = e.target.id || e.srcElement.id;
+    computerChoice = getComputerChoice();
 
-fire.addEventListener("click", (e) => {
-  playerChoice = e.target.id;
-  console.log(`playerChoice: ${playerChoice}`);
-  console.log(`computerChoice: ${computerChoice}`);
-  console.log(playRound(playerChoice, computerChoice));
+    console.log(`playerChoice: ${playerChoice}`);
+    console.log(`computerChoice: ${computerChoice}`);
+
+    playRound(playerChoice, computerChoice);
+
+    if (isGameOver()) {
+      restartGame();
+    }
+  });
 });
-
-plant.addEventListener("click", (e) => {
-  playerChoice = e.target.id;
-  console.log(`playerChoice: ${playerChoice}`);
-  console.log(`computerChoice: ${computerChoice}`);
-  console.log(playRound(playerChoice, computerChoice));
-});
-
-water.addEventListener("click", (e) => {
-  playerChoice = e.target.id;
-  console.log(`playerChoice: ${playerChoice}`);
-  console.log(`computerChoice: ${computerChoice}`);
-  console.log(playRound(playerChoice, computerChoice));
-});
-
-enemy.addEventListener("click", () => console.log("enemy"));

@@ -13,7 +13,7 @@
         <span class="water-color">Water</span>
     </h1>
 
-    <h3>3 Pokemons | 5 Games</h3>
+    <h3>3 pokemon-btns | 5 Games</h3>
 
     <h3>
         <span class="fire-color">Fire</span> beats <span class="plant-color">Plant</span> | 
@@ -21,14 +21,14 @@
         <span class="water-color">Water</span> beats <span class="fire-color">Fire</span>
     </h3>
 
-    <div class="container">
-       <button class="pokemon fire-color" id="fire">
+    <div class="choice-container">
+       <button class="pokemon-btn fire-color" id="fire">
         <p>Salameche</p>
         </button>
-       <button class="pokemon plant-color" id="plant">
+       <button class="pokemon-btn plant-color" id="plant">
         <p>Bulbizar</p>
        </button>
-       <button class="pokemon water-color" id="water">
+       <button class="pokemon-btn water-color" id="water">
         <p>Carapuce</p>
        </button>
     </div>
@@ -37,18 +37,18 @@
     <br>
     
     <div class="game-info">
-        <div class="pokemon" id="enemy">
-            <p>Computer Choose: </p>
+        <div class="pokemon-btn" id="enemy">
+            <p>Computer's Choice:</p>
             <p id="computerChoiceDisplay">None</p>
         </div>
-        <div class="summary">
-            <p id="rounds">Round: 0</p>
-            <p id="score">
-                <span id="playerScore">Your Score: 0</span> | 
-                <span id="computerScore">Computer Score: 0</span>
+        <div class="game-summary">
+            <p id="roundCounter">Round: 0</p>
+            <p id="scoreboard">
+                <span id="playerScoreDisplay">Your Score: 0</span> | 
+                <span id="computerScoreDisplay">Computer Score: 0</span>
             </p>
-            <p id="state"></p>
-            <p id="sentence"></p>
+            <p id="gameState"></p>
+            <p id="roundResult"></p>
         </div>
     </div>
     

@@ -1,23 +1,25 @@
 let round = 0;
-let playerChoice = "";
-let computerChoice = "";
 let playerScore = 0;
 let computerScore = 0;
+let playerChoice = "";
+let computerChoice = "";
 let choice = ["fire", "plant", "water"];
 
-let rounds = document.querySelector("#rounds");
-let sentence = document.querySelector("#sentence");
-let state = document.querySelector("#state");
-let computer_score = document.querySelector("#computerScore");
-let player_score = document.querySelector("#playerScore");
+let roundCounter = document.querySelector("#roundCounter");
+let roundResult = document.querySelector("#roundResult");
+let gameState = document.querySelector("#gameState");
+let playerScoreDisplay = document.querySelector("#playerScoreDisplay");
+let computerScoreDisplay = document.querySelector("#computerScoreDisplay");
+let computerChoiceDisplay = document.querySelector("#computerChoiceDisplay");
 
 let enemy = document.querySelector("#enemy");
-const pokemonButtons = document.querySelectorAll(".pokemon");
-const computerChoiceDisplay = document.querySelector("#computerChoiceDisplay");
+const pokemonButtons = document.querySelectorAll(
+  ".choice-container .pokemon-btn"
+);
 
 function countRounds() {
   round += 1;
-  rounds.innerText = `Round: ${round}`;
+  roundCounter.innerText = `Round: ${round}`;
   return round;
 }
 
@@ -31,26 +33,26 @@ function updateScoreAndState(winner, playerSelection, computerSelection) {
   if (winner === "player") {
     playerScore++;
 
-    player_score.textContent = `Player: ${playerScore}`;
+    playerScoreDisplay.textContent = `Player: ${playerScore}`;
 
-    state.textContent = "You WIN";
+    gameState.textContent = "You WIN";
   } else if (winner === "computer") {
     computerScore++;
 
-    computer_score.textContent = `Computer: ${computerScore}`;
+    computerScoreDisplay.textContent = `Computer: ${computerScore}`;
 
-    state.textContent = "You LOSE";
+    gameState.textContent = "You LOSE";
   } else {
-    state.textContent = "Tie";
+    gameState.textContent = "Tie";
   }
-  sentence.textContent = createSentence(
+  roundResult.textContent = createroundResult(
     winner,
     playerSelection,
     computerSelection
   );
 }
 
-function createSentence(winner, playerSelection, computerSelection) {
+function createroundResult(winner, playerSelection, computerSelection) {
   if (winner === "player") {
     return `${playerSelection} beats ${computerSelection}`;
   } else if (winner === "computer") {
@@ -104,12 +106,12 @@ function restartGame() {
   playerScore = 0;
   computerScore = 0;
 
-  rounds.innerText = `Round: ${round}`;
-  player_score.textContent = `Player: ${playerScore}`;
-  computer_score.textContent = `Computer: ${computerScore}`;
+  roundCounter.innerText = `Round: ${round}`;
+  playerScoreDisplay.textContent = `Player: ${playerScore}`;
+  computerScoreDisplay.textContent = `Computer: ${computerScore}`;
   computerChoiceDisplay.textContent = "None";
-  state.textContent = "Idle";
-  sentence.textContent = "";
+  gameState.textContent = "Idle";
+  roundResult.textContent = "";
 }
 
 pokemonButtons.forEach((button) => {

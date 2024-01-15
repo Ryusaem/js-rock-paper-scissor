@@ -1,0 +1,37 @@
+h1, h3 {
+    text-align: center;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+.container {
+    display: flex;
+    border: 2px solid black;
+    justify-content: space-around;
+}
+
+.container_2 {
+    display: flex;
+    border: 2px solid black;
+}
+
+.pokemon {
+    /* height: 200px; */
+    min-height: 200px;
+    max-height: 100%;
+    width: 15%;
+    border: 2px solid red;
+}
+
+.computer_choice {
+}

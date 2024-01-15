@@ -13,7 +13,7 @@ let player_score = document.querySelector("#playerScore");
 
 let enemy = document.querySelector("#enemy");
 const pokemonButtons = document.querySelectorAll(".pokemon");
-const computer_choice = document.querySelector("#computer_choice");
+const computerChoiceDisplay = document.querySelector("#computerChoiceDisplay");
 
 function countRounds() {
   round += 1;
@@ -23,7 +23,7 @@ function countRounds() {
 
 function getComputerChoice() {
   let temp = choice[Math.floor(Math.random() * choice.length)];
-  computer_choice.textContent = temp;
+  computerChoiceDisplay.textContent = temp;
   return temp;
 }
 
@@ -107,7 +107,7 @@ function restartGame() {
   rounds.innerText = `Round: ${round}`;
   player_score.textContent = `Player: ${playerScore}`;
   computer_score.textContent = `Computer: ${computerScore}`;
-  computer_choice.textContent = "None";
+  computerChoiceDisplay.textContent = "None";
   state.textContent = "Idle";
   sentence.textContent = "";
 }

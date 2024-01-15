@@ -2,15 +2,15 @@ h1, h3 {
     text-align: center;
 }
 
-.red {
+.fire-color {
     color: red;
 }
 
-.green {
+.plant-color {
     color: green;
 }
 
-.blue {
+.water-color {
     color: blue;
 }
 
@@ -20,7 +20,7 @@ h1, h3 {
     justify-content: space-around;
 }
 
-.container_2 {
+.game-info {
     display: flex;
     border: 2px solid black;
 }

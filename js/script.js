@@ -1,16 +1,16 @@
 let round = 0;
 let playerScore = 0;
 let computerScore = 0;
-let playerChoice = "";
-let computerChoice = "";
+let playerChoice; // initialize in playRound();
+let computerChoice; // initialize in playRound();
 let choice = ["fire", "plant", "water"];
 
 let roundCounter = document.querySelector("#roundCounter");
 let roundResult = document.querySelector("#roundResult");
 let gameState = document.querySelector("#gameState");
+let computerChoiceDisplay = document.querySelector("#computerChoiceDisplay");
 let playerScoreDisplay = document.querySelector("#playerScoreDisplay");
 let computerScoreDisplay = document.querySelector("#computerScoreDisplay");
-let computerChoiceDisplay = document.querySelector("#computerChoiceDisplay");
 
 let enemy = document.querySelector("#enemy");
 const pokemonButtons = document.querySelectorAll(
@@ -114,6 +114,8 @@ function restartGame() {
   roundResult.textContent = "";
 }
 
+// ------------------------------
+// main logic
 pokemonButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     playerChoice = e.target.id || e.srcElement.id;

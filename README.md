@@ -3,7 +3,7 @@ Rock paper scissor | Odin Project
 
 WireFrame → https://wireframe.cc/PPRkyP
 
-Live Demo → https://ryusaem.github.io/rock_paper_scissor_odin_project/
+Live Demo → https://ryusaem.github.io/js-rock-paper-scissor/
 
 PseudoCode →
 
